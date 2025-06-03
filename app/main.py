@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 from app.routes import router
 
-app = FastAPI(title="API de Predicción IA")
+app = FastAPI(title="API Backend")
 
 # Incluir las rutas definidas en otro archivo
 # Se inportan las rutas 
