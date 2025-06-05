@@ -14,6 +14,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",  # frontend local
         "http://127.0.0.1:3000",
+        "http://172.20.100.143",  # esta el la red de NGINX 
         # "https://tunetunetune.com",  <-- dominio para producción
     ],
     allow_credentials=True,
