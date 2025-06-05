@@ -1,0 +1,54 @@
+name: CI - FastAPI with Docker Compose
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:13
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U testuser"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker Compose Services
+      run: docker-compose up -d --build
+
+    - name: Wait for FastAPI to be ready
+      run: |
+        for i in {1..10}; do
+          curl -s http://localhost:8000/docs && break
+          echo "Waiting for FastAPI to be ready..."
+          sleep 5
+        done
+
+    - name: Run tests
+      run: docker-compose exec -T web pytest
+
+    - name: Shut down
+      run: docker-compose down
