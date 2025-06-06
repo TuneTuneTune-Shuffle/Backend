@@ -3,3 +3,4 @@ uvicorn[standard]
 numpy
 librosa
 tensorflow
+motor

@@ -1,21 +1,16 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"  # Enter the script directory
-
-# Create venv if not present
-if [ ! -d "venv" ]; then
-    echo "🟡 Creating virtual environment..."
-    python3 -m venv venv
-fi
+cd "$(dirname "$0")"
 
 # Activate virtual environment
 source venv/bin/activate
 
-# Install dependencies from requirements.txt
-echo "📦 Installing dependencies from requirements.txt..."
-pip install --upgrade pip
+# Install dependencies
 pip install -r requirements.txt
 
-# Start backend using pm2 with corrected module path
-echo "🚀 Launching FastAPI backend with pm2..."
-pm2 start "bash -c 'source venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000'" --name backendAPI
+# Start backend with PM2 using interpreter and args
+pm2 start ./venv/bin/uvicorn \
+  --name API \
+  --interpreter ./venv/bin/python \
+  -- \
+  main:app --host 0.0.0.0 --port 8000
