@@ -14,7 +14,7 @@ router = APIRouter()
 security = HTTPBearer()
 
 # Load model once
-MODEL_PATH = "genre_classifier_modelV3.keras"
+MODEL_PATH = "routes/genre_classifier_modelV3.keras"
 model = keras.models.load_model(MODEL_PATH)
 labels = ["blues", "classical", "country", "disco", "hiphop", "jazz", "metal", "pop", "reggae", "rock"]
 
