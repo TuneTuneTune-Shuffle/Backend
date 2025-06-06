@@ -14,7 +14,16 @@ router = APIRouter()
 security = HTTPBearer()
 
 # Load model once
-MODEL_PATH = "routes/genre_classifier_modelV3.keras"
+# Get the current directory of this file (routes/predict.py)
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the path to the model relative to this file
+MODEL_PATH = os.path.join(CURRENT_DIR, "..", "1kGenres", "genre_classifier_modelV3.keras")
+
+# Normalize the path
+MODEL_PATH = os.path.normpath(MODEL_PATH)
+
+# Load the model
 model = keras.models.load_model(MODEL_PATH)
 labels = ["blues", "classical", "country", "disco", "hiphop", "jazz", "metal", "pop", "reggae", "rock"]
 
