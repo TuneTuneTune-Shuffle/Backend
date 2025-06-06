@@ -9,3 +9,4 @@ python-jose[cryptography]
 pydantic[email]
 pyaudio
 python-multipart
+pymongo

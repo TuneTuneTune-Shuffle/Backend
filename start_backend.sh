@@ -21,6 +21,7 @@ source venv/bin/activate
 # Install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
+pip install --upgrade pymongo
 
 # Start backend with PM2
 pm2 start ./venv/bin/uvicorn \
