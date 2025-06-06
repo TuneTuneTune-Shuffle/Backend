@@ -18,4 +18,4 @@ pip install -r requirements.txt
 
 # Start backend using pm2 with corrected module path
 echo "🚀 Launching FastAPI backend with pm2..."
-pm2 start "bash -c 'cd $(pwd) && source venv/bin/activate && uvicorn backend.main:app --host 0.0.0.0 --port 8000'" --name backend
+pm2 start "bash -c 'source venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000'" --name backendAPI
