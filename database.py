@@ -1,9 +1,13 @@
 import os
-from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
+from dotenv import load_dotenv
 
 load_dotenv()
-client = AsyncIOMotorClient(os.getenv("MONGO_URI"))
 
-db = client["tunetunetune"]
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME", "tunetunetune")
+
+client = AsyncIOMotorClient(MONGO_URI)
+db = client[DB_NAME]
+
 users_collection = db["users"]

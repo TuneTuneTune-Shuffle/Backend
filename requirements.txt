@@ -3,10 +3,10 @@ uvicorn[standard]
 numpy
 librosa
 tensorflow
-motor
 passlib
 python-jose[cryptography]
 pydantic[email]
 pyaudio
 python-multipart
-pymongo
+motor>=3.3.0
+pymongo>=4.5.0
