@@ -5,3 +5,4 @@ librosa
 tensorflow
 motor
 passlib
+python-jose[cryptography]
