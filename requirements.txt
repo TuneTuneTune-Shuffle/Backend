@@ -7,5 +7,4 @@ motor
 passlib
 python-jose[cryptography]
 pydantic[email]
-portaudio19-dev
 pyaudio

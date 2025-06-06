@@ -8,6 +8,13 @@ if [ ! -d "venv" ]; then
   python3 -m venv venv
 fi
 
+# Debian/Ubuntu (for your current setup):
+sudo apt update && sudo apt install -y \
+    portaudio19-dev \
+    ffmpeg \
+    build-essential \
+    libsndfile1
+
 # Activate it
 source venv/bin/activate
 
