@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from backend.routes import auth
-from backend.routes import predict
+from routes import auth
+from routes import predict
 
 load_dotenv()  # This loads the .env file into environment variables
 
