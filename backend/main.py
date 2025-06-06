@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from routes import auth
+from routes import predict
 
 load_dotenv()  # This loads the .env file into environment variables
 
@@ -23,3 +24,6 @@ app.add_middleware(
 )
 
 app.include_router(auth.router, prefix="/api")
+
+app.include_router(predict.router, prefix="/api")
+
