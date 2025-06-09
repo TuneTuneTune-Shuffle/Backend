@@ -25,7 +25,7 @@ pip install --upgrade pymongo
 
 # Start backend with PM2
 pm2 start ./venv/bin/uvicorn \
-  --name backendA \
+  --name backendAPI \
   --interpreter ./venv/bin/python \
   -- \
   main:app --host 0.0.0.0 --port 8000

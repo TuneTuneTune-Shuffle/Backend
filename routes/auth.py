@@ -1,3 +1,5 @@
+# This is the routes/auth.py
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, EmailStr
 from database import users_collection
@@ -12,13 +14,14 @@ class UserIn(BaseModel):
 @router.post("/signup")
 async def signup(user: UserIn):
     if await users_collection.find_one({"email": user.email}):
-        raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(status_code=409, detail="Email already registered")
 
     hashed = hash_password(user.password)
     await users_collection.insert_one({"email": user.email, "hashed_password": hashed})
 
     token = create_access_token({"sub": user.email})
-    return {"access_token": token, "token_type": "bearer"}
+    return {"access_token": token, 
+            "token_type": "bearer"}
 
 @router.post("/login")
 async def login(user: UserIn):
@@ -27,4 +30,5 @@ async def login(user: UserIn):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     token = create_access_token({"sub": user.email})
-    return {"access_token": token, "token_type": "bearer"}
+    return {"access_token": token, 
+            "token_type": "bearer"}
