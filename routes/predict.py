@@ -36,8 +36,9 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 
 @router.post("/predict")
 async def predict_genre(file: UploadFile = File(...), user: str = Depends(get_current_user)):
-    if file.content_type != "audio/wav":
-        raise HTTPException(status_code=400, detail="Only WAV files are supported")
+    if not file.content_type.startswith("audio/"):
+        raise HTTPException(status_code=400, detail="Only audio files are supported")
+
 
     # Save uploaded file temporarily
     temp_path = f"/tmp/{file.filename}"
