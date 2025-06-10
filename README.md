@@ -17,6 +17,5 @@ Después de clonar el repo:
 
 1. sudo apt install npm
 2. sudo npm install pm2
-3. source venv/bin/activate
-2. pm2 start ecosystem.config.js
+3. ./start_backend.sh
 
