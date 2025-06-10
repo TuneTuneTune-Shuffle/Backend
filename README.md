@@ -1,5 +1,7 @@
 # Backend
 
+Para correr LOCALMENTE, referise a https://github.com/TuneTuneTune-Shuffle/TuneShuffle_localDeploy
+
 # Correr de la siguiente manera:
 
 Esta parte requiere un .env:
