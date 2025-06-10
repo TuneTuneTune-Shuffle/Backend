@@ -32,3 +32,4 @@ async def login(user: UserIn):
     token = create_access_token({"sub": user.email})
     return {"access_token": token, 
             "token_type": "bearer"}
+
